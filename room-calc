@@ -1,0 +1,284 @@
+jQuery(function() {
+    var tarif = 1, //roomtype
+        roomsize = 0,
+        keller=0, //keller unchecked
+        einbaukueche = false, // einbaukueche unchecked
+        kartons = 0,
+        kartonsNew,
+        client = 2,
+        revenue = 0,
+    	  RentPerMonth = 0,
+        RevenueGrownthTerminal = 0,
+        sqm,
+        einbaukuecheSqm = 0,
+        kellerSqm = 0,
+        kellerFlaecheInput = 0,
+        sqmForSpan;
+      /*  var video = document.getElementById('video');
+		var source = document.createElement('source');*/
+        
+    
+    function recount() {
+    		sqm = RentPerMonth * roomsize + einbaukuecheSqm + kellerFlaecheInput;
+        kartons = Math.ceil(sqm * 24);
+        RevenueGrownthTerminal = roomsize;
+        revenue = kartons.toFixed();
+        sqmForSpan = sqm.toFixed(2);
+ 
+        jQuery("#revenue").html(revenue + ' Kartons');
+        jQuery("#sqmForSpan").html(sqmForSpan + ' LKWs');
+        jQuery("#sqm").html(sqm + ' Storage Size');
+        document.getElementById('kartonPlaceholder').innerHTML=kartons;
+      if (sqmForSpan > 0 &&  sqmForSpan < 2) {
+          $("#calc").show();
+          $("#noCalc").hide();
+		  $("#xs").show();
+          $("#s").hide();
+          $("#m").hide();
+          $("#l").hide();
+          $("#xl").hide();
+          $("#xxl").hide();
+        
+        }
+        else if (sqmForSpan >= 2 &&  sqmForSpan < 4) {
+          $("#calc").show();
+		  $("#noCalc").hide();
+          $("#xs").hide();
+          $("#s").show();
+          $("#m").hide();
+          $("#l").hide();
+          $("#xl").hide();
+          $("#xxl").hide();
+        }
+        else if (sqmForSpan >= 4 &&  sqmForSpan < 6) {
+          $("#calc").show();
+          $("#noCalc").hide();
+          $("#xs").hide();
+          $("#s").hide();
+          $("#m").show();
+          $("#l").hide();
+          $("#xl").hide();
+          $("#xxl").hide();
+        }
+      else if (sqmForSpan >=6 &&  sqmForSpan < 9) {
+          $("#calc").show();
+          $("#noCalc").hide();
+          $("#xs").hide();
+          $("#s").hide();
+          $("#m").hide();
+          $("#l").show();
+          $("#xl").hide();
+          $("#xxl").hide();
+        }
+      else if (sqmForSpan >= 9 &&  sqmForSpan < 12) {
+          $("#calc").show();
+          $("#noCalc").hide();
+          $("#xs").hide();
+          $("#s").hide();
+          $("#m").hide();
+          $("#l").hide();
+          $("#xl").show();
+          $("#xxl").hide();
+        } 
+      else if (sqmForSpan >= 12) {
+          $("#calc").show();
+          $("#noCalc").hide();
+          $("#xs").hide();
+          $("#s").hide();
+          $("#m").hide();
+          $("#l").hide();
+          $("#xl").hide();
+          $("#xxl").show();
+        } else {
+          $("#calc").hide();
+          $("#noCalc").show();
+		  $("#xs").hide();
+          $("#s").hide();
+          $("#m").hide();
+          $("#l").hide();
+          $("#xl").hide();
+          $("#xxl").hide();
+        };
+    }     
+	recount();
+    jQuery('#tarif').change(function() {
+        tarif = jQuery('#tarif option:selected').val();
+        client = jQuery('#client option:selected').val();
+        RentPerMonth = 0;
+        if (tarif == 1 && client == 1 ) {
+        RentPerMonth =  0.8 / 10; 
+         $("#checkboxEinbau").show();
+          $("#checkboxKeller").show();
+        } else if (tarif == 1 && client == 2) {
+            RentPerMonth =  1 / 10;
+             $("#checkboxEinbau").show();
+             $("#checkboxKeller").show();
+        }
+        else if (tarif == 1 && client == 3) {
+            RentPerMonth =  1.2 / 10;
+             $("#checkboxEinbau").show();
+             $("#checkboxKeller").show();
+        } 
+        else if (tarif == 2 && client == 1) {
+            RentPerMonth =  0.8 * 1.5 / 10;
+             $("#checkboxEinbau").hide();
+             $("#checkboxKeller").hide();
+             $( "#keller" ).prop( "checked", false );
+             $( "#einbaukueche" ).prop( "checked", false );
+             kellerFlaecheInput = 0;
+             $('input[id="kellerFlaecheInput"]').val('')
+             einbaukuecheSqm = 0;
+          $("#kellerFlaeche").hide();
+        }
+        else if (tarif == 2 && client == 2) {
+            RentPerMonth =  1 * 1.5 / 10;
+            $("#checkboxEinbau").hide();
+            $("#checkboxKeller").hide();
+   			 $( "#keller" ).prop( "checked", false );
+           $( "#einbaukueche" ).prop( "checked", false );
+           kellerFlaecheInput = 0;
+             $('input[id="kellerFlaecheInput"]').val('')
+             einbaukuecheSqm = 0;
+          $("#kellerFlaeche").hide();
+        }
+        else if (tarif == 2 && client == 3) {
+            RentPerMonth = 1.2 * 1.5 / 10;
+            $("#checkboxEinbau").hide();
+            $("#checkboxKeller").hide();
+			$( "#keller" ).prop( "checked", false );
+            $( "#einbaukueche" ).prop( "checked", false );           
+            kellerFlaecheInput = 0;
+            $('input[id="kellerFlaecheInput"]').val('')
+            einbaukuecheSqm = 0;
+          $("#kellerFlaeche").hide();
+        } 
+        else if (tarif == 3 && client == 1) {
+            RentPerMonth =  0.8 / 20;
+            $("#checkboxEinbau").hide();
+            $("#checkboxKeller").hide();
+          $( "#keller" ).prop( "checked", false );
+            $( "#einbaukueche" ).prop( "checked", false ); 
+           kellerFlaecheInput = 0;
+             $('input[id="kellerFlaecheInput"]').val('')
+             einbaukuecheSqm = 0;
+          $("#kellerFlaeche").hide();
+        }
+        else if (tarif == 3 && client == 2) {
+            RentPerMonth =  1 / 20;
+            $("#checkboxEinbau").hide();
+            $("#checkboxKeller").hide();
+          	$( "#keller" ).prop( "checked", false );
+            $( "#einbaukueche" ).prop( "checked", false ); 
+           kellerFlaecheInput = 0;
+             $('input[id="kellerFlaecheInput"]').val('')
+             einbaukuecheSqm = 0;
+          $("#kellerFlaeche").hide();
+        }
+        else if (tarif == 3 && client == 3) {
+            RentPerMonth = 1.2 / 20;
+            $("#checkboxEinbau").hide();
+            $("#checkboxKeller").hide();
+          $( "#keller" ).prop( "checked", false );
+            $( "#einbaukueche" ).prop( "checked", false ); 
+           kellerFlaecheInput = 0;
+             $('input[id="kellerFlaecheInput"]').val('')
+             einbaukuecheSqm = 0;
+          $("#kellerFlaeche").hide();
+        }
+        
+        recount();
+    });
+        jQuery('#client').change(function() {
+       /* client = jQuery('#client').val();*/
+           tarif = jQuery('#tarif option:selected').val();
+        client = jQuery('#client option:selected').val();
+        RentPerMonth = 0;
+        if (tarif == 1 && client == 1 ) {
+        RentPerMonth =  0.8 / 10; 
+        } else if (tarif == 1 && client == 2 ) {
+            RentPerMonth =  1 / 10;
+        }
+        else if (tarif == 1 && client == 3) {
+            RentPerMonth = 1.2 / 10;
+        } 
+        else if (tarif == 2 && client == 1) {
+            RentPerMonth =  0.8 * 1.5 / 10;
+        }
+        else if (tarif == 2 && client == 2) {
+            RentPerMonth =  1 * 1.5 / 10;
+        }
+        else if (tarif == 2 && client == 3) {
+            RentPerMonth =  1.2 * 1.5 / 10;
+        } 
+        else if (tarif == 3 && client == 1) {
+            RentPerMonth = 0.8 / 20;
+        }
+        else if (tarif == 3 && client == 2) {
+            RentPerMonth = 1 / 20;
+        }
+        else if (tarif == 3 && client == 3) {
+            RentPerMonth =  1.2 / 20;
+        }
+        
+        recount();
+    });
+
+    $(document).on("change keyup", "#client", function() {
+        client = +$(this).val();
+        $("#client-slider").slider("value", client);
+        recount();
+    });
+    recount();
+    $(document).on("change keyup", "#roomsize", function() {
+        roomsize = +$(this).val();
+      if (roomsize > 300) {
+        roomsize = 300;
+        $("#roomsize").val(300);
+        recount();
+      }
+      
+       // $("#client-slider").slider("value", roomsize);
+        recount();
+    });
+$("#einbaukueche").change(function() {
+    if(this.checked) {
+        einbaukuecheSqm =  1;
+    } else {
+    einbaukuecheSqm = 0;
+    }
+    recount();
+});
+$("#keller").change(function() {
+    if(this.checked) {
+         $("#kellerFlaeche").show();
+    } else {
+     $("#kellerFlaeche").hide();
+      $('input[id="kellerFlaecheInput"]').val('');
+    }
+}); 
+
+    $(document).on("change keyup", "#kellerFlaecheInput", function() {
+        kellerFlaecheInput = +$(this).val() * 0.5;
+        if (kellerFlaecheInput > 25) { 
+        kellerFlaecheInput = 50 * 0.5
+        $("#kellerFlaecheInput").val(50);
+        recount();
+        }
+     
+      
+       // $("#client-slider").slider("value", roomsize);
+        recount();
+    });
+});
+$(function() {
+    $("#client-slider").slider({
+        range: "min",
+        value: 2,
+        min: 1,
+        max: 3,
+        slide: function(event, ui) {
+            $('#client').val(ui.value).trigger("change");
+        }
+    });
+    $("#client").val($("#client-slider").slider("value"));
+});
