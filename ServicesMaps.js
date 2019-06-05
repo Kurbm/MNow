@@ -67,7 +67,7 @@
   this.travelMode = 'DRIVING';
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
-  this.directionsDisplay.setMap(map);
+  this.directionsDisplay.setMap(map3);
   
 var berlinBoundsDirections = new google.maps.LatLngBounds(
    new google.maps.LatLng(52.36564718258499, 13.025376371663128),
@@ -144,9 +144,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           var point = response.routes[ 0 ].legs[ 0 ];
         
        $( '#travel_data' ).html( 'Ungefähre Fahrzeit: ' + point.duration.text + ' (' + point.distance.text + ')' );
-       $('#map').show();
+       $('#map-tripduration').show();
        $('#travel_data').show();
-       $('#map').css("height","400px");
+       $('#map-tripduration').css("height","400px");
 
         } else {
           window.alert('Directions request failed due to ' + status);
