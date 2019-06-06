@@ -144,7 +144,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
                 position: this.geometry.location,
                 title: this.name,
                 icon: originMarkerIcon 
-		},
+		}),
         destination: {'placeId': this.destinationPlaceId},
         travelMode: google.maps.DirectionsTravelMode.DRIVING
       },
