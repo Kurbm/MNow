@@ -47,8 +47,8 @@
 
         autocomplete.addListener('place_changed', onPlaceChanged);
 		 
-		 document.getElementById('searchType').addEventListener(
-            'change', onTypeChanged);
+		if( document.getElementById('pac-input).value() !== "") { document.getElementById('searchType').addEventListener(
+            'change', onTypeChanged)};
       }
 	  
 	  var beaches = [
