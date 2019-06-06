@@ -191,11 +191,18 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }
       }
       function search() {
-        var search = {
+        var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+	if (slug_maps === 'moebelhaus') {
+		  var search = {
           bounds: map.getBounds(),
           types: ['furniture_store']
         };
-
+	} else if (slug_maps === 'moebeltaxi') {
+		  var search = {
+          bounds: map.getBounds(),
+        };
+	} 
+       
         places.nearbySearch(search, function(results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             clearMarkers();
