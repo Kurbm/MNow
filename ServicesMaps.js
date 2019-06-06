@@ -184,7 +184,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }
       }
       function onPlaceChanged() {
-       if( document.getElementById('pac-input').value !== "") {
+       
 	 var place = autocomplete.getPlace();
         if (place.geometry) {
           map.panTo(place.geometry.location);
@@ -194,10 +194,12 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         } else {
           document.getElementById('pac-input').placeholder = 'Straßenname';
         }
-       }
+       
       }
 	  
 	   function onTypeChanged() {
+		   if( document.getElementById('pac-input').value !== "") {console.log("empty")
+		   }
 		var place = onPlaceChanged()   
 		 //  console.log(type)
         
