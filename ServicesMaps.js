@@ -139,12 +139,8 @@ AutocompleteDirectionsHandler.prototype.route = function() {
   this.directionsService.route(
       {
 		  
-        origin: {'placeId': this.originPlaceId,
-                originMarkers = new google.maps.Marker({
-                position: this.geometry.location,
-                title: this.name,
-                icon: originMarkerIcon }
-		}),
+        origin: {'placeId': this.originPlaceId
+		},
         destination: {'placeId': this.destinationPlaceId},
         travelMode: google.maps.DirectionsTravelMode.DRIVING
       },
