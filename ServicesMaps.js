@@ -195,14 +195,15 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       }
 	  
 	   function onTypeChanged() {
-        var place = autocomplete.getPlace();
+		   console.log('ABC')
+    /*    var place = autocomplete.getPlace();
         if (place.geometry) {
           map.panTo(place.geometry.location);
           map.setZoom(15);
           search();
         } else {
           document.getElementById('pac-input').placeholder = 'Straßenname';
-        }
+        }*/
       }
       function search() {
         var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
