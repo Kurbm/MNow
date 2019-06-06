@@ -189,14 +189,16 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           map.panTo(place.geometry.location);
           map.setZoom(15);
           search();
+	  return place
         } else {
           document.getElementById('pac-input').placeholder = 'Straßenname';
         }
       }
 	  
 	   function onTypeChanged() {
-		   //console.log(search1)
-        //var place = autocomplete.getPlace();
+		var place = onPlaceChanged()   
+		 //  console.log(type)
+        
         if (place.geometry) {
           map.panTo(place.geometry.location);
           map.setZoom(15);
