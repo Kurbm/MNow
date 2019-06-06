@@ -195,7 +195,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       }
 	  
 	   function onTypeChanged() {
-		   console.log(search)
+		   console.log(search1)
     /*    var place = autocomplete.getPlace();
         if (place.geometry) {
           map.panTo(place.geometry.location);
@@ -209,12 +209,12 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 	var type = document.getElementById('searchType').value;
 	if (slug_maps === 'moebelhaus') {
-		  var search = {
+		  var search1 = {
           bounds: map.getBounds(),
           types: ['furniture_store']
         };
 	} else if (slug_maps === 'moebeltaxi') {
-		  var search = {
+		  var search1 = {
           bounds: map.getBounds(),
 	  types: [type]
         };
