@@ -191,7 +191,8 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }
       }
       function search() {
-        var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+        var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+	console.log(slug_maps);
 	if (slug_maps === 'moebelhaus') {
 		  var search = {
           bounds: map.getBounds(),
