@@ -1,4 +1,4 @@
-       var map, places, infoWindow;
+  var map, places, infoWindow;
       var markers = [];
       var autocomplete;
       var hostnameRegexp = new RegExp('^https?://.+?/');
@@ -46,6 +46,9 @@
         places = new google.maps.places.PlacesService(map);
 
         autocomplete.addListener('place_changed', onPlaceChanged);
+		 
+		 document.getElementById('searchType').addEventListener(
+            'change', onTypeChanged);
       }
 	  
 	  var beaches = [
@@ -190,6 +193,17 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           document.getElementById('pac-input').placeholder = 'Straßenname';
         }
       }
+	  
+	   function onTypeChanged() {
+        var place = autocomplete.getPlace();
+        if (place.geometry) {
+          map.panTo(place.geometry.location);
+          map.setZoom(15);
+          search();
+        } else {
+          document.getElementById('pac-input').placeholder = 'Straßenname';
+        }
+      }
       function search() {
         var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 	var type = document.getElementById('searchType').value;
@@ -293,4 +307,4 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         } else {
           document.getElementById('iw-website-row').style.display = 'none';
         }
-      }
+      }      
