@@ -195,7 +195,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       }
 	  
 	   function onTypeChanged() {
-		   console.log(search1)
+		   //console.log(search1)
         //var place = autocomplete.getPlace();
         if (place.geometry) {
           map.panTo(place.geometry.location);
