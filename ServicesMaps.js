@@ -184,8 +184,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }
       }
       function onPlaceChanged() {
-       
+     
 	 var place = autocomplete.getPlace();
+	      if (typeof place !== 'undefined') {
         if (place.geometry) {
           map.panTo(place.geometry.location);
           map.setZoom(15);
@@ -193,7 +194,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 	  return place
         } else {
           document.getElementById('pac-input').placeholder = 'Straßenname';
-        }
+        }}
        
       }
 	  
