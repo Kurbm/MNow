@@ -192,7 +192,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       }
       function search() {
         var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-	console.log(slug_maps);
+	var type = ($('#searchType  option:selected').val());
 	if (slug_maps === 'moebelhaus') {
 		  var search = {
           bounds: map.getBounds(),
@@ -201,6 +201,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 	} else if (slug_maps === 'moebeltaxi') {
 		  var search = {
           bounds: map.getBounds(),
+	  types: ["'"+type+"'"]
         };
 	} 
        
