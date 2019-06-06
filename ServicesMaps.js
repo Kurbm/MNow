@@ -1,4 +1,4 @@
-  var map, places, infoWindow;
+var map, places, infoWindow;
       var markers = [];
       var autocomplete;
       var hostnameRegexp = new RegExp('^https?://.+?/');
@@ -41,7 +41,7 @@
            (
                document.getElementById('pac-input')), {
  							  bounds: berlinBounds,
-  							strictBounds: true,
+  							  strictBounds: true,
   			});
         places = new google.maps.places.PlacesService(map);
 
@@ -63,7 +63,7 @@
 				['Trödelmarkt und Kunst- & Kunsthanderwerkermarkt Straße des 17. Juni', 52.5135881,13.3311986, '9'],
 				['RAW-Flohmarkt', 52.5073437,13.4529905, '10']
 	];
-	  function AutocompleteDirectionsHandler(map3) {
+  function AutocompleteDirectionsHandler(map3) {
   this.map3 = map3;
   this.originPlaceId = null;
   this.destinationPlaceId = null;
@@ -72,7 +72,7 @@
   this.directionsDisplay = new google.maps.DirectionsRenderer;
   this.directionsDisplay.setMap(map3);
   
-var berlinBoundsDirections = new google.maps.LatLngBounds(
+   var berlinBoundsDirections = new google.maps.LatLngBounds(
    new google.maps.LatLng(52.36564718258499, 13.025376371663128),
    new google.maps.LatLng(52.673826366896414, 13.784531628336822));
 
@@ -100,7 +100,7 @@ var berlinBoundsDirections = new google.maps.LatLngBounds(
 }
 
 
-AutocompleteDirectionsHandler.prototype.setupClickListener = function(
+/*AutocompleteDirectionsHandler.prototype.setupClickListener = function(
     id, mode) {
   var radioButton = document.getElementById(id);
   var me = this;
@@ -109,7 +109,7 @@ AutocompleteDirectionsHandler.prototype.setupClickListener = function(
     me.travelMode = mode;
     me.route();
   });
-};
+};*/
 
 AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(
     autocomplete, mode) {
@@ -135,9 +135,16 @@ AutocompleteDirectionsHandler.prototype.route = function() {
     return;
   }
   var me = this;
+  var originMarkerIcon = 'https://app.movinganow.com/baseline-location-on-24-px-copy-3.d1e5627c.svg';
   this.directionsService.route(
       {
-        origin: {'placeId': this.originPlaceId},
+		  
+        origin: {'placeId': this.originPlaceId,
+                originMarkers = new google.maps.Marker({
+                position: this.geometry.location,
+                title: this.name,
+                icon: originMarkerIcon 
+		},
         destination: {'placeId': this.destinationPlaceId},
         travelMode: google.maps.DirectionsTravelMode.DRIVING
       },
@@ -184,7 +191,6 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }
       }
       function onPlaceChanged() {
-     
 	 var place = autocomplete.getPlace();
 	      if (typeof place !== 'undefined') {
         if (place.geometry) {
@@ -197,12 +203,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }}
        
       }
-	  
 	   function onTypeChanged() {
 		clearMarkers()
 		var place = onPlaceChanged()   
-		 //  console.log(type)
-        
         if (place.geometry) {
           map.panTo(place.geometry.location);
           map.setZoom(15);
@@ -230,11 +233,11 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             clearMarkers();
             for (var i = 0; i < results.length; i++) {
-                  var markerIcon = 'https://app.movinganow.com/baseline-location-on-24-px-copy-3.d1e5627c.svg';
+                var markerIcon = 'https://app.movinganow.com/baseline-location-on-24-px-copy-3.d1e5627c.svg';
                 markers[i] = new google.maps.Marker({
                 position: results[i].geometry.location,
                 title: results[i].name,
-                 icon: markerIcon        
+                icon: markerIcon        
               });
               markers[i].placeResult = results[i];
               google.maps.event.addListener(markers[i], 'click', showInfoWindow);
