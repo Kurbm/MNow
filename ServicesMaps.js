@@ -199,8 +199,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       }
 	  
 	   function onTypeChanged() {
-		   if( document.getElementById('pac-input').value !== "") {console.log("empty")
-		   }
+		clearMarkers()
 		var place = onPlaceChanged()   
 		 //  console.log(type)
         
