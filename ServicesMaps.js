@@ -47,8 +47,8 @@
 
         autocomplete.addListener('place_changed', onPlaceChanged);
 		 
-		if( document.getElementById('pac-input').value !== "") { document.getElementById('searchType').addEventListener(
-            'change', onTypeChanged)};
+		 document.getElementById('searchType').addEventListener(
+            'change', onTypeChanged);
       }
 	  
 	  var beaches = [
@@ -184,7 +184,8 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }
       }
       function onPlaceChanged() {
-        var place = autocomplete.getPlace();
+       if( document.getElementById('pac-input').value !== "") {
+	 var place = autocomplete.getPlace();
         if (place.geometry) {
           map.panTo(place.geometry.location);
           map.setZoom(15);
@@ -193,6 +194,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         } else {
           document.getElementById('pac-input').placeholder = 'Straßenname';
         }
+       }
       }
 	  
 	   function onTypeChanged() {
