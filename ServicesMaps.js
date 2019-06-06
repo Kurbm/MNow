@@ -47,7 +47,7 @@
 
         autocomplete.addListener('place_changed', onPlaceChanged);
 		 
-		if( document.getElementById('pac-input).value() !== "") { document.getElementById('searchType').addEventListener(
+		if( document.getElementById('pac-input').value !== "") { document.getElementById('searchType').addEventListener(
             'change', onTypeChanged)};
       }
 	  
