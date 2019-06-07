@@ -1,4 +1,4 @@
-var map, places, infoWindow;
+var map,map1, map3, places, infoWindow;
       var markers = [];
       var autocomplete;
       var hostnameRegexp = new RegExp('^https?://.+?/');
@@ -14,13 +14,13 @@ var map, places, infoWindow;
           streetViewControl: false
         });
 		  
-		  var map1 = new google.maps.Map(document.getElementById('map-streetmarket'), {
+		   map1 = new google.maps.Map(document.getElementById('map-streetmarket'), {
           center: {lat: 52.521918, lng: 13.413215},
    		  zoom: 11,
 		  mapTypeControl: false,
         });
 		 
-		var map3 = new google.maps.Map(document.getElementById('map-tripduration'), {
+		 map3 = new google.maps.Map(document.getElementById('map-tripduration'), {
         	mapTypeControl: false,
    		center: {lat: 52.521918, lng: 13.413215},
    		zoom: 13
