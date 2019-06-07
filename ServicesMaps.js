@@ -228,7 +228,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         places.nearbySearch(search, function(results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             clearMarkers();
-		  console.log(results);
+		  //console.log(results);
             for (var i = 0; i < results.length; i++) {
                 var markerIcon = 'https://app.movinganow.com/baseline-location-on-24-px-copy-3.d1e5627c.svg';
                 markers[i] = new google.maps.Marker({
@@ -236,9 +236,10 @@ AutocompleteDirectionsHandler.prototype.route = function() {
                 title: results[i].name,
                 icon: markerIcon        
               });
-              markers[i].placeResult = results[i];
+		    console.log(markers[i]),
+             /* markers[i].placeResult = results[i];
               google.maps.event.addListener(markers[i], 'click', showInfoWindow);
-          		    setTimeout(dropMarker(i), 100);
+          		    setTimeout(dropMarker(i), 100);*/
             }
           }
         });
