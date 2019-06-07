@@ -237,9 +237,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
                 icon: markerIcon        
               });
 		    console.log(markers[i]),
-             /* markers[i].placeResult = results[i];
+           //   markers[i].placeResult = results[i];
               google.maps.event.addListener(markers[i], 'click', showInfoWindow);
-          		    setTimeout(dropMarker(i), 100);*/
+          		    setTimeout(dropMarker(i), 100);
             }
           }
         });
