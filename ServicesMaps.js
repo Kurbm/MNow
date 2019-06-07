@@ -69,7 +69,9 @@ var map, places, infoWindow;
   this.destinationPlaceId = null;
   this.travelMode = 'DRIVING';
   this.directionsService = new google.maps.DirectionsService;
-  this.directionsDisplay = new google.maps.DirectionsRenderer;
+  this.directionsDisplay = new google.maps.DirectionsRenderer({ 
+  suppressMarkers: true
+  });
   this.directionsDisplay.setMap(map3);
   
    var berlinBoundsDirections = new google.maps.LatLngBounds(
@@ -114,6 +116,8 @@ var map, places, infoWindow;
 AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(
     autocomplete, mode) {
   var me = this;
+	
+
 
   autocomplete.addListener('place_changed', function() {
     var placeDirection = autocomplete.getPlace();
@@ -135,6 +139,29 @@ AutocompleteDirectionsHandler.prototype.route = function() {
     return;
   }
   var me = this;
+	
+		var icons = {
+  start: new google.maps.MarkerImage(
+   // URL
+   'https://app.movinganow.com/baseline-location-on-24-px-copy-3.d1e5627c.svg',
+   // (width,height)
+   new google.maps.Size( 28, 40 ),
+   // The origin point (x,y)
+   new google.maps.Point( 0, 0 ),
+   // The anchor point (x,y)
+ //  new google.maps.Point( 22,32 )
+  ),
+  end: new google.maps.MarkerImage(
+   // URL
+   'https://app.movinganow.com/baseline-location-on-24-px-copy-2.f1ef6927.svg',
+   // (width,height)
+   new google.maps.Size( 28, 40 ),
+   // The origin point (x,y)
+   new google.maps.Point( 0, 0 ),
+   // The anchor point (x,y)
+  // new google.maps.Point( 22,32 )
+  )
+ };
   var originMarkerIcon = 'https://app.movinganow.com/baseline-location-on-24-px-copy-3.d1e5627c.svg';
   this.directionsService.route(
       {
@@ -148,6 +175,8 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         if (status === 'OK') {
           me.directionsDisplay.setDirections(response);
           var point = response.routes[ 0 ].legs[ 0 ];
+          makeMarker(point.start_location, icons.start, point.start_address);
+          makeMarker(point.end_location, icons.end, point.end_address);
         
        $( '#travel_data' ).html( 'Ungefähre Fahrzeit: ' + point.duration.text + ' (' + point.distance.text + ')' );
        $('#map-tripduration').show();
@@ -159,6 +188,14 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }
       });
 };
+function makeMarker( position, icon, title ) {
+ new google.maps.Marker({
+  position: position,
+  map: map,
+  icon: icon,
+  title: title
+ });
+}
 
 	   function setMarkers(map1) {
         var image1 = {
