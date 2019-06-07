@@ -102,22 +102,9 @@ var map, places, infoWindow;
 }
 
 
-/*AutocompleteDirectionsHandler.prototype.setupClickListener = function(
-    id, mode) {
-  var radioButton = document.getElementById(id);
-  var me = this;
-
-  radioButton.addEventListener('click', function() {
-    me.travelMode = mode;
-    me.route();
-  });
-};*/
-
 AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(
     autocomplete, mode) {
   var me = this;
-	
-
 
   autocomplete.addListener('place_changed', function() {
     var placeDirection = autocomplete.getPlace();
@@ -191,7 +178,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 function makeMarker( position, icon, title ) {
  new google.maps.Marker({
   position: position,
-  map: map,
+  map: map3,
   icon: icon,
   title: title
  });
@@ -290,16 +277,11 @@ function makeMarker( position, icon, title ) {
         markers = [];
       }
 
-     
-
       function dropMarker(i) {
         return function() {
           markers[i].setMap(map);
         };
       }
-
-
-
 
       function showInfoWindow() {
         var marker = this;
