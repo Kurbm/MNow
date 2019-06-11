@@ -298,15 +298,15 @@ function dropMarker(i) {
 }
 
 function showInfoWindow() {
-    var marker = this;
+    var marker1 = this;
     places.getDetails({
-            placeId: marker.placeResult.place_id
+            placeId: marker1.placeResult.place_id
         },
         function(place, status) {
             if (status !== google.maps.places.PlacesServiceStatus.OK) {
                 return;
             }
-            infoWindow.open(map, marker);
+            infoWindow.open(map, marker1);
             buildIWContent(place);
         });
 }
