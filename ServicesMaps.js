@@ -222,7 +222,7 @@ function setMarkers(map1) {
 
 function onPlaceChanged() {
     var place = autocomplete.getPlace();
-    if (typeof place !== 'undefined') {
+   // if (typeof place !== 'undefined') {
         if (place.geometry) {
             map.panTo(place.geometry.location);
             map.setZoom(15);
@@ -231,11 +231,11 @@ function onPlaceChanged() {
         } else {
             document.getElementById('pac-input').placeholder = 'Straßenname';
         }
-    }
+ //   }
 
 }
 
-function onTypeChanged() {
+/*function onTypeChanged() {
     clearMarkers()
     var place = onPlaceChanged()
     if (place.geometry) {
@@ -245,7 +245,7 @@ function onTypeChanged() {
     } else {
         document.getElementById('pac-input').placeholder = 'Straßenname';
     }
-}
+}*/
 
 function search() {
     var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
