@@ -56,8 +56,8 @@ function initMap() {
 
     autocomplete.addListener('place_changed', onPlaceChanged);
 
-    document.getElementById('searchType').addEventListener(
-        'change', onTypeChanged);
+   /* document.getElementById('searchType').addEventListener(
+        'change', onTypeChanged);*/
 }
 
 var beaches = [
