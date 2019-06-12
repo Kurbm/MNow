@@ -56,8 +56,8 @@ function initMap() {
 
     autocomplete.addListener('place_changed', onPlaceChanged);
 
-   /* document.getElementById('searchType').addEventListener(
-        'change', onTypeChanged);*/
+    document.getElementById('searchType').addEventListener(
+        'change', onTypeChanged);
 }
 
 var beaches = [
@@ -222,7 +222,7 @@ function setMarkers(map1) {
 
 function onPlaceChanged() {
     var place = autocomplete.getPlace();
-   // if (typeof place !== 'undefined') {
+     if (typeof place !== 'undefined') {
         if (place.geometry) {
             map.panTo(place.geometry.location);
             map.setZoom(15);
@@ -231,11 +231,11 @@ function onPlaceChanged() {
         } else {
             document.getElementById('pac-input').placeholder = 'Straßenname';
         }
- //   }
+    }
 
 }
 
-/*function onTypeChanged() {
+function onTypeChanged() {
     clearMarkers()
     var place = onPlaceChanged()
     if (place.geometry) {
@@ -245,7 +245,7 @@ function onPlaceChanged() {
     } else {
         document.getElementById('pac-input').placeholder = 'Straßenname';
     }
-}*/
+}
 
 function search() {
     var slug_maps = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
@@ -271,10 +271,8 @@ function search() {
                 markers[i] = new google.maps.Marker({
                     position: results[i].geometry.location,
                     title: results[i].name,
-                    icon: markerIcon
-                });
-                console.log(markers[i]),
-                    //   markers[i].placeResult = results[i];
+                    //console.log(markers[i]),
+                      markers[i].placeResult = results[i];
                     google.maps.event.addListener(markers[i], 'click', showInfoWindow);
                 setTimeout(dropMarker(i), 100);
             }
