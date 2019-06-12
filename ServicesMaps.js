@@ -271,6 +271,8 @@ function search() {
                 markers[i] = new google.maps.Marker({
                     position: results[i].geometry.location,
                     title: results[i].name,
+                    icon: markerIcon 
+                });
                     //console.log(markers[i]),
                       markers[i].placeResult = results[i];
                     google.maps.event.addListener(markers[i], 'click', showInfoWindow);
